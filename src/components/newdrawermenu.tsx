@@ -8,6 +8,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dro
 import { MenuItem, menuItems } from "@/constants";
 import { ReactNode, useState, useEffect } from "react";
 import React from "react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 
 export default function Newdrawermenu() {
 	const [dropdownStates, setDropdownStates] = useState<Record<string, boolean>>({}); // オブジェクトのStateを作成し、疑似的に複数のStateを管理する
@@ -35,34 +36,56 @@ export default function Newdrawermenu() {
 		if (item.children && item.children.length > 0) {
 			return (
 				<div key={item.id}>
-					<div className="flex">
-						<button
-							onClick={() => toggleDropdown(item.id)}
-						>
-							{item.label}
-						</button>
-						<ChevronDown></ChevronDown>
-					</div>
-					{dropdownStates[item.id] && (
+					<Collapsible>
+						<CollapsibleTrigger asChild>
+							<div className="flex items-center p-4 hover:bg-accent hover:text-accent-foreground">
+								<button
+									onClick={() => toggleDropdown(item.id)}
+								>
+									<span className="text-lg">{item.label}</span>
+								</button>
+								<ChevronDown className="ml-auto"></ChevronDown>
+							</div>
+						</CollapsibleTrigger>
+						
+						<CollapsibleContent>
+							<div className="p-4">
+								{item.children.map(children => (
+									<SheetClose key={children.id} asChild>
+										<Link 
+											key={children.id} 
+											href={children.href}
+											className="pl-4"
+										>
+											{children.label}
+										</Link>
+									</SheetClose>
+								))}
+							</div>
+						</CollapsibleContent>
+					</Collapsible>
+					{/*{dropdownStates[item.id] && (
 						item.children.map(children => (
 							<SheetClose key={children.id} asChild>
 								<Link key={children.id} href={children.href}>{children.label}</Link>
 							</SheetClose>
 						))
-					)}
+					)}*/}
 				</div>
 			)
 		}
 		// 通常のメニュー表示
 		return (
-			<p key={item.id} >{ item.label }</p>
+			<SheetClose key={item.id} asChild>
+				<Link href={item.href} className="p-4 text-lg hover:bg-accent hover:text-accent-foreground">{ item.label }</Link>
+			</SheetClose>
 		)
 	}
 
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
-				<Button>
+				<Button className="md:hidden" variant="outline">
 					<Menu></Menu>
 				</Button>
 			</SheetTrigger>
@@ -71,24 +94,8 @@ export default function Newdrawermenu() {
 				<SheetHeader>
 					<SheetTitle>メニュー</SheetTitle>
 				</SheetHeader>
-				
+
 				{ menuItems.map(renderMenuItems) }
-				
-				<SheetClose asChild>
-					<Link href="./about" className="flex hover:bg-accent hover:text-accent-foreground transition-colors duration-200">
-						aaaa
-					</Link>
-				</SheetClose>
-
-				<DropdownMenu>
-					<DropdownMenuTrigger>
-						<ChevronDown></ChevronDown>
-					</DropdownMenuTrigger>
-
-					<DropdownMenuContent>
-						<p>a</p>
-					</DropdownMenuContent>
-				</DropdownMenu>
 			</SheetContent>
 		</Sheet>
 	)

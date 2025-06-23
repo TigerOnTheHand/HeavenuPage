@@ -37,13 +37,14 @@ export default function DrawerMenu() {
           <ul className="space-y-4">
             {menuItems.map((item) => {
               return (
-                <li key={item.href}>
+                <li key={item.id}>
                   <SheetClose asChild>
                     <Link
                       href={item.href}
-                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+                      className="flex items-center p-3 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                     >
                       <span className="text-lg font-medium">{item.label}</span>
+                      <Home></Home>
                     </Link>
                   </SheetClose>
                 </li>
