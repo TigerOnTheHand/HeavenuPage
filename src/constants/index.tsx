@@ -33,7 +33,7 @@ export const menuItems : MenuItem[] = [
   { 
     id: 'Blog',
     label: 'Blog', 
-    href: '/' 
+    href: '/blog' 
   },
   { 
     id: 'Contact',
