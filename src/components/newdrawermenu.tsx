@@ -5,7 +5,6 @@ import { Button } from "./ui/button"
 import { ChevronDown, Menu } from "lucide-react";
 import Link from "next/link";
 import { MenuItem, menuItems } from "@/constants";
-import { useState, useEffect } from "react";
 import React from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 
