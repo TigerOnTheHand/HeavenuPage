@@ -4,33 +4,12 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 import { Button } from "./ui/button"
 import { ChevronDown, Menu } from "lucide-react";
 import Link from "next/link";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { MenuItem, menuItems } from "@/constants";
-import { ReactNode, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 
 export default function Newdrawermenu() {
-	const [dropdownStates, setDropdownStates] = useState<Record<string, boolean>>({}); // オブジェクトのStateを作成し、疑似的に複数のStateを管理する
-
-	useEffect(() => {
-		const initialStates = {};
-		menuItems.map(item => {
-			if (item.children && item.children.length > 0) {
-				(initialStates as any)[item.id] = false;
-			}
-		})
-		setDropdownStates(initialStates);
-	},[])
-
-	// ドロップダウンの開閉
-	const toggleDropdown = (itemId: string) => {
-		setDropdownStates(prev => ({
-			...prev,
-			[itemId]: !prev[itemId]
-		}));
-	}
-
 	const renderMenuItems = (item : MenuItem): React.ReactNode => {
 		// 子要素がある場合はドロップダウンメニューとして表示
 		if (item.children && item.children.length > 0) {
@@ -39,9 +18,7 @@ export default function Newdrawermenu() {
 					<Collapsible>
 						<CollapsibleTrigger asChild>
 							<div className="flex items-center p-4 hover:bg-accent hover:text-accent-foreground">
-								<button
-									onClick={() => toggleDropdown(item.id)}
-								>
+								<button>
 									<span className="text-lg">{item.label}</span>
 								</button>
 								<ChevronDown className="ml-auto"></ChevronDown>
@@ -64,13 +41,6 @@ export default function Newdrawermenu() {
 							</div>
 						</CollapsibleContent>
 					</Collapsible>
-					{/*{dropdownStates[item.id] && (
-						item.children.map(children => (
-							<SheetClose key={children.id} asChild>
-								<Link key={children.id} href={children.href}>{children.label}</Link>
-							</SheetClose>
-						))
-					)}*/}
 				</div>
 			)
 		}

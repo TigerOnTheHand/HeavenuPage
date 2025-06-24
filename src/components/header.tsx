@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import DrawerMenu from './drawermenu'
 import { menuItems } from '@/constants/index'
 import Newdrawermenu from './newdrawermenu'
 

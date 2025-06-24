@@ -1,5 +1,3 @@
-import { Menu, X, Home, User, Settings, Mail, Info } from 'lucide-react'
-
 export interface MenuItem {
   id : string;
   label : string;

@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Home, User, Settings, Mail, Info } from 'lucide-react'
+import { Menu, Home} from 'lucide-react'
 import {
   Sheet,
   SheetClose,
