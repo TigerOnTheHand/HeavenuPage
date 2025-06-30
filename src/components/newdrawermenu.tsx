@@ -25,8 +25,8 @@ export default function Newdrawermenu() {
 						</CollapsibleTrigger>
 						
 						{item.children.map(children => (
-							<CollapsibleContent >
-								<SheetClose key={children.id} asChild>
+							<CollapsibleContent key={children.id}>
+								<SheetClose asChild>
 									<Link 
 										key={children.id} 
 										href={children.href}
