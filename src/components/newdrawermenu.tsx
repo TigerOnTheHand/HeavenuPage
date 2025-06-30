@@ -24,21 +24,19 @@ export default function Newdrawermenu() {
 							</div>
 						</CollapsibleTrigger>
 						
-						<CollapsibleContent>
-							<div className="p-4">
-								{item.children.map(children => (
-									<SheetClose key={children.id} asChild>
-										<Link 
-											key={children.id} 
-											href={children.href}
-											className="pl-4"
-										>
-											{children.label}
-										</Link>
-									</SheetClose>
-								))}
-							</div>
-						</CollapsibleContent>
+						{item.children.map(children => (
+							<CollapsibleContent >
+								<SheetClose key={children.id} asChild>
+									<Link 
+										key={children.id} 
+										href={children.href}
+										className="pl-4"
+									>
+										{children.label}
+									</Link>
+								</SheetClose>
+							</CollapsibleContent>
+						))}
 					</Collapsible>
 				</div>
 			)

@@ -22,9 +22,14 @@ export const menuItems : MenuItem[] = [
     href: '/', 
     children: [
       {
+        id: 'FuroshikiOfLogic',
+        label: '論理のふろしき',
+        href: '/projects/logicoffroshiki'
+      },
+      {
         id: 'Archives',
         label: 'Archives',
-        href: '/'
+        href: '/projects/archives'
       }
     ]
   },
@@ -36,6 +41,6 @@ export const menuItems : MenuItem[] = [
   { 
     id: 'Contact',
     label: 'Contact', 
-    href: '/' 
+    href: '/contact' 
   }
 ]
